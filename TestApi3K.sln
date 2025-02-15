@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApi3K", "TestApi3K\TestApi3K.csproj", "{DCBF08CF-673D-4713-8856-8874DA64B2ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBlazor3K", "..\BlazorDigest\TestBlazor3K\TestBlazor3K.csproj", "{771FB16B-5A3F-40C1-9627-F24C8D7B60D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCBF08CF-673D-4713-8856-8874DA64B2ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCBF08CF-673D-4713-8856-8874DA64B2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCBF08CF-673D-4713-8856-8874DA64B2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCBF08CF-673D-4713-8856-8874DA64B2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{771FB16B-5A3F-40C1-9627-F24C8D7B60D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{771FB16B-5A3F-40C1-9627-F24C8D7B60D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{771FB16B-5A3F-40C1-9627-F24C8D7B60D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{771FB16B-5A3F-40C1-9627-F24C8D7B60D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
