@@ -21,10 +21,7 @@ namespace CinemaDigestApi.Controllers
         public async Task<IActionResult> GetAllGenres()
         {
 
-            return new OkObjectResult(new
-            {
-                genres = _genre.GetAllGenres()
-            });
+            return Ok(_genre.GetAllGenres());
         }
         [Authorize(Roles = "admin")]
         [HttpPost]

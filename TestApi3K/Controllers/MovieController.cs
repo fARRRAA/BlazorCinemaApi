@@ -29,7 +29,7 @@ namespace CinemaDigestApi.Controllers
         [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> AddNew([FromQuery] CreateMovie created)
+        public async Task<IActionResult> AddNew([FromBody] CreateMovie created)
         {
 
             if (_movie.All().Any(g => g.name == created.name))
