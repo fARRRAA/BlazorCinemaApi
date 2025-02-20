@@ -18,12 +18,12 @@ namespace CinemaDigestApi.Controllers
         }
         [HttpGet]
         [Route("all")]
-        public async Task<IActionResult> GetAll([FromQuery] string? name,string? genre,int? page, int? pageSize)
+        public async Task<IActionResult> GetAll([FromBody] string? name, string? genre, int? page, int? pageSize)
         {
 
             return Ok(
 
-                 _movie.GetAllMovies(name,genre,page,pageSize));
+                 _movie.GetAllMovies(name, genre, page, pageSize));
 
         }
         [Authorize(Roles = "admin")]
@@ -45,7 +45,7 @@ namespace CinemaDigestApi.Controllers
         [Authorize(Roles = "admin")]
         [HttpPut]
         [Route("update/{id}")]
-        public async Task<IActionResult> Update(int id, [FromQuery] CreateMovie created)
+        public async Task<IActionResult> Update(int id, [FromBody] CreateMovie created)
         {
             if (!_movie.MovieExists(id))
             {
@@ -69,10 +69,10 @@ namespace CinemaDigestApi.Controllers
         [HttpGet("movie/{id}")]
         public async Task<IActionResult> GetMovie(int id)
         {
-            return  Ok(
+            return Ok(
 
                 _movie.GetMovieById(id));
-            
+
         }
 
     }
