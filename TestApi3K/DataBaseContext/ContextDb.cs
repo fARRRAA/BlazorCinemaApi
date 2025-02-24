@@ -14,5 +14,9 @@ namespace CinemaDigestApi.DataBaseContext
         public DbSet<Role> Role { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<MovieChat> MovieChats { get; set; }
+        public DbSet<UserChat> UserChats { get; set; }
+        public DbSet<MovieChatMessage> MovieChatMessages { get; set; }
+        public DbSet<UserChatMesaage> UserChatMesaages { get; set; }
     }
 }

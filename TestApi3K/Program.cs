@@ -5,6 +5,7 @@ using CinemaDigestApi.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using CinemaDigestApi.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<ContextDb>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TestDbString")), ServiceLifetime.Scoped);
@@ -21,6 +22,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<IGenreService, GenresService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IChatService,ChatService>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddCors(options =>
 {
@@ -65,6 +67,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
                 });
 var app = builder.Build();
+app.MapHub<ChatHub>("/chathub");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
