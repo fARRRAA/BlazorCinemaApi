@@ -22,18 +22,19 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<IGenreService, GenresService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
-builder.Services.AddScoped<IChatService,ChatService>();
+builder.Services.AddScoped<IChatService, ChatService>();
+builder.Services.AddScoped<IMovieChatMessages,MovieChatMessagesService>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod() 
+               .AllowAnyHeader(); 
+    });
 });
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
@@ -67,7 +68,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
                 });
 var app = builder.Build();
-app.MapHub<ChatHub>("/chathub");
+app.MapHub<ChatHub>("/chatHub");
 
 
 // Configure the HTTP request pipeline.
@@ -76,6 +77,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
