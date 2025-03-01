@@ -14,10 +14,10 @@ namespace CinemaDigestApi.Controllers
         {
             _messages = messages;
         }
-        [HttpGet("api/movieChat/movie/messages")]
-        public IActionResult GetAllMessages()
+        [HttpGet("api/movieChat/movie/messages/{chatId}")]
+        public IActionResult GetAllMessages(int chatId)
         {
-            return Ok( _messages.GetMovieChatMessages());    
+            return Ok( _messages.GetMovieChatMessages(chatId));    
         }
         [HttpPost("api/movieChat/movie/message/add")]
         public async Task<IActionResult> AddMovieChatMessage([FromBody]MovieChatMessageRequest moviereq)

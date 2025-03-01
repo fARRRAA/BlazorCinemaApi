@@ -40,9 +40,9 @@ namespace CinemaDigestApi.Service
 
         }
 
-        public List<MovieChatMessage> GetMovieChatMessages()
+        public List<MovieChatMessage> GetMovieChatMessages(int chatId)
         {
-            return _context.MovieChatMessages.Include(x=>x.Chat).Include(x=>x.User).Include(x=>x.Chat.Movie).ToList();
+            return _context.MovieChatMessages.Include(x=>x.Chat).Include(x=>x.User).Include(x=>x.Chat.Movie).Where(x=>x.chatId==chatId).ToList();
         }
     }
 }
