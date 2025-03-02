@@ -8,7 +8,7 @@ namespace CinemaDigestApi.Model
         [Key]
         public int id { get; set; }
         [ForeignKey(nameof(FirstUser))]
-        public int firsUserId {  get; set; }
+        public int firstUserId {  get; set; }
         public User FirstUser { get; set; }
         [ForeignKey(nameof(SecondUser))]
         public int secondUserId { get; set; }

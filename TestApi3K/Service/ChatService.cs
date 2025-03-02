@@ -24,7 +24,19 @@ namespace CinemaDigestApi.Service
 
         public MovieChat GetMovieChatByMovieId(int id)
         {
-            return _context.MovieChats.Include(x => x.Movie).FirstOrDefault(x => x.movieId == id);
+            var chat = _context.MovieChats.Include(x => x.Movie).FirstOrDefault(x => x.movieId == id);
+            if (chat == null)
+            {
+                var chatAdd = new MovieChat()
+                {
+                    movieId = id,
+                    created_at = DateTime.Now,
+                };
+                _context.MovieChats.Add(chatAdd);
+                _context.SaveChanges();
+                return chatAdd;
+            }
+            return chat;
         }
 
         public List<MovieChat> GetMovieChats()

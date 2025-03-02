@@ -36,13 +36,15 @@ namespace CinemaDigestApi.Service
         public async Task DeleteMovieMessage(int id)
         {
            var mess = await _context.MovieChatMessages.FirstOrDefaultAsync(x=>x.id==id);
+            _context.MovieChatMessages.Remove(mess);
             await _context.SaveChangesAsync();
 
         }
 
         public List<MovieChatMessage> GetMovieChatMessages(int chatId)
         {
-            return _context.MovieChatMessages.Include(x=>x.Chat).Include(x=>x.User).Include(x=>x.Chat.Movie).Where(x=>x.chatId==chatId).ToList();
+            return _context.MovieChatMessages.Include(x=>x.Chat).Include(x=>x.User).Include(x=>x.Chat.Movie)
+                .Where(x=>x.chatId==chatId).ToList();
         }
     }
 }

@@ -17,6 +17,6 @@ namespace CinemaDigestApi.DataBaseContext
         public DbSet<MovieChat> MovieChats { get; set; }
         public DbSet<UserChat> UserChats { get; set; }
         public DbSet<MovieChatMessage> MovieChatMessages { get; set; }
-        public DbSet<UserChatMesaage> UserChatMesaages { get; set; }
+        public DbSet<UserChatMesaage> UserChatMessages { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace CinemaDigestApi.Model
         public string password { get; set; }
         [ForeignKey(nameof(role))]
         public int roleId { get; set; }
-        public Role role { get; set; }
+        public Role? role { get; set; }
     }
 }
