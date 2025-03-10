@@ -12,7 +12,7 @@ namespace CinemaDigestApi.Hubs
         }
         public async Task RegisterUser(User user)
         {
-            Users[user.id] = Context.ConnectionId;
+            Users[user.id] = $"{Context.ConnectionId}_{user.id}";
         }
         public async Task SendMessage(User user, MovieChatMessage message)
         {

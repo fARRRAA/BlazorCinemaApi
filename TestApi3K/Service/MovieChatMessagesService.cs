@@ -40,7 +40,15 @@ namespace CinemaDigestApi.Service
             await _context.SaveChangesAsync();
 
         }
-
+        public async Task UpdateMovieMessage(int id, MovieChatMessageRequest mess)
+        {
+            var message = await _context.MovieChatMessages.FirstOrDefaultAsync(x => x.id == id);
+            if (message!=null)
+            {
+                message.message= mess.message;
+            }
+            await _context.SaveChangesAsync();
+        }
         public List<MovieChatMessage> GetMovieChatMessages(int chatId)
         {
             return _context.MovieChatMessages.Include(x=>x.Chat).Include(x=>x.User).Include(x=>x.Chat.Movie)

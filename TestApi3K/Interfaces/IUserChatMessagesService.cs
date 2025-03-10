@@ -8,5 +8,6 @@ namespace CinemaDigestApi.Interfaces
         public List<UserChatMesaage> GetUserChatMessages(int chatId);
         public Task AddUserMessage(UserChatMessageRequest message);
         public Task DeleteUserMessage(int id);
+        public Task UpdateChatMessage(int id, UserChatMessageRequest mess);
     }
 }

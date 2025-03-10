@@ -37,7 +37,15 @@ namespace CinemaDigestApi.Service
             await _context.UserChatMessages.AddAsync(newMessage);
             await _context.SaveChangesAsync();
         }
-
+        public async Task UpdateChatMessage(int id, UserChatMessageRequest mess)
+        {
+            var message = await _context.UserChatMessages.FirstOrDefaultAsync(x => x.id == id);
+            if (message != null)
+            {
+                message.message = mess.message;
+            }
+            await _context.SaveChangesAsync();
+        }
         public async Task DeleteUserMessage(int id)
         {
             var mess = await _context.UserChatMessages.FirstOrDefaultAsync(x => x.id == id);

@@ -26,5 +26,17 @@ namespace CinemaDigestApi.Controllers
             await _messages.AddUserMessage(message);
             return Ok();
         }
+        [HttpPut("/userChat/messages/update/{id}")]
+        public async Task<IActionResult> UpdateUserMessage(int id,[FromBody]UserChatMessageRequest messageReq)
+        {
+            await _messages.UpdateChatMessage(id, messageReq);
+            return Ok();
+        }
+        [HttpDelete("/userChat/messages/delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _messages.DeleteUserMessage(id);
+            return Ok();
+        }
     }
 }

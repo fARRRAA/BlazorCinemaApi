@@ -25,6 +25,17 @@ namespace CinemaDigestApi.Controllers
             await _messages.AddMovieMessage(moviereq);
             return Ok();
         }
-
+        [HttpPut("/api/movieChat/movie/message/edit/{id}")]
+        public async Task<IActionResult> EditMovieMessage(int id, [FromBody]MovieChatMessageRequest moviereq)
+        {
+            await _messages.UpdateMovieMessage(id, moviereq);
+            return Ok();
+        }
+        [HttpDelete("/api/movieChat/movie/message/delete/{id}")]
+        public async Task<IActionResult> DeleteMovieMessage(int id)
+        {
+            await _messages.DeleteMovieMessage(id);
+            return Ok();
+        }
     }
 }
