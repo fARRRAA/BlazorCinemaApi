@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaDigestApi.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    [Migration("20250223164630_chats")]
-    partial class chats
+    [Migration("20250313145933_all123")]
+    partial class all123
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,7 +137,7 @@ namespace CinemaDigestApi.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("MovieChatsMessages");
+                    b.ToTable("MovieChatMessages");
                 });
 
             modelBuilder.Entity("CinemaDigestApi.Model.Role", b =>
@@ -155,6 +155,43 @@ namespace CinemaDigestApi.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Role");
+                });
+
+            modelBuilder.Entity("CinemaDigestApi.Model.UnityUser", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<float>("coins")
+                        .HasColumnType("real");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("roleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("roleId");
+
+                    b.ToTable("UnityUsers");
                 });
 
             modelBuilder.Entity("CinemaDigestApi.Model.User", b =>
@@ -206,7 +243,7 @@ namespace CinemaDigestApi.Migrations
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("firsUserId")
+                    b.Property<int>("firstUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("secondUserId")
@@ -214,7 +251,7 @@ namespace CinemaDigestApi.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("firsUserId");
+                    b.HasIndex("firstUserId");
 
                     b.HasIndex("secondUserId");
 
@@ -252,7 +289,7 @@ namespace CinemaDigestApi.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("UserChatMesaages");
+                    b.ToTable("UserChatMessages");
                 });
 
             modelBuilder.Entity("CinemaDigestApi.Model.Movie", b =>
@@ -296,6 +333,17 @@ namespace CinemaDigestApi.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("CinemaDigestApi.Model.UnityUser", b =>
+                {
+                    b.HasOne("CinemaDigestApi.Model.Role", "role")
+                        .WithMany()
+                        .HasForeignKey("roleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("role");
+                });
+
             modelBuilder.Entity("CinemaDigestApi.Model.User", b =>
                 {
                     b.HasOne("CinemaDigestApi.Model.Role", "role")
@@ -311,7 +359,7 @@ namespace CinemaDigestApi.Migrations
                 {
                     b.HasOne("CinemaDigestApi.Model.User", "FirstUser")
                         .WithMany()
-                        .HasForeignKey("firsUserId")
+                        .HasForeignKey("firstUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

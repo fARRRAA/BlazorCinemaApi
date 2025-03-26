@@ -165,10 +165,6 @@ namespace CinemaDigestApi.Migrations
                     b.Property<float>("coins")
                         .HasColumnType("real");
 
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -185,7 +181,12 @@ namespace CinemaDigestApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("roleId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
+
+                    b.HasIndex("roleId");
 
                     b.ToTable("UnityUsers");
                 });
@@ -327,6 +328,17 @@ namespace CinemaDigestApi.Migrations
                     b.Navigation("Chat");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CinemaDigestApi.Model.UnityUser", b =>
+                {
+                    b.HasOne("CinemaDigestApi.Model.Role", "role")
+                        .WithMany()
+                        .HasForeignKey("roleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("role");
                 });
 
             modelBuilder.Entity("CinemaDigestApi.Model.User", b =>
