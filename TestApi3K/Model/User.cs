@@ -18,6 +18,11 @@ namespace CinemaDigestApi.Model
         public Role? role { get; set; }
 
     }
+    public class ChangeLP
+    {
+        public string login { get; set; }
+        public string password { get; set; }
+    }
     public class UserRes
     {
        public string login { get; set; }

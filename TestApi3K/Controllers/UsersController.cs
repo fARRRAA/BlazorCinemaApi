@@ -75,7 +75,7 @@ namespace CinemaDigestApi.Controllers
             return Ok(await _userService.GetUserByIdAsync(id));
         }
         [HttpPost("update/{id}")]
-        public async Task<IActionResult> UpdateUserAsync(int id,CreateNewUser user)
+        public async Task<IActionResult> UpdateUserAsync(int id, CreateNewUser user)
         {
             if (!_userService.UserExists(id))
             {
@@ -96,6 +96,11 @@ namespace CinemaDigestApi.Controllers
             await _userService.DeleteUser(id);
             return Ok();
         }
-
+        [HttpPost("/user/change/{id}")]
+        public async Task<IActionResult> ChangeData(int id, [FromBody] ChangeLP lp)
+        {
+            await _userService.ChangeData(id, lp);
+            return Ok();
+        }
     }
 }

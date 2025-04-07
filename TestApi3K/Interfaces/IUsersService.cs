@@ -14,6 +14,7 @@ namespace CinemaDigestApi.Interfaces
         bool UserExists(int id);
         Task UpdateUserAsync(int id,CreateNewUser newUser);
         Task DeleteUser(int id);
+        Task ChangeData(int id,ChangeLP lp);
         List<User> GetAllUsers();
     }
 }

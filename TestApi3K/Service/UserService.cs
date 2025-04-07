@@ -150,5 +150,14 @@ namespace CinemaDigestApi.Service
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
+
+        public async Task ChangeData(int id,ChangeLP lp)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.id == id);
+            if (user == null) return;
+            user.login =    lp.login;
+            user.password = lp.password;
+            await _context.SaveChangesAsync();
+        }
     }
 }

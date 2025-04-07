@@ -26,7 +26,7 @@ builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IMovieChatMessages,MovieChatMessagesService>();
 builder.Services.AddScoped<IUserChatService, UserChatService>(); 
 builder.Services.AddScoped<IUserChatMessagesService, UserChatMessagesService>();
-
+builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddCors(options =>
 {
